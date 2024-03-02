@@ -1,0 +1,43 @@
+#include <unistd.h>
+
+// Função para imprimir um caractere na tela
+void ft_putchar(char c)
+{
+    write(1, &c, 1);
+}
+
+// Função rush que desenha o padrão e exibe a saída
+void rush(int largura, int altura)
+{
+    if (largura <= 0 || altura <= 0)
+        return;
+
+    int i = 0;
+    while (i < altura)
+    {
+        char cantoEsquerdo = (i == 0 || i == altura - 1) ? 'A' : 'B';
+        char cantoDireito = (i == 0 || i == altura - 1) ? 'C' : 'B';
+
+        ft_putchar(cantoEsquerdo);
+
+        int j = 1;
+        while (j < largura - 1)
+        {
+            char caractereMeio = (i == 0 || i == altura - 1) ? 'B' : ' ';
+            ft_putchar(caractereMeio);
+            j++;
+        }
+
+        ft_putchar(cantoDireito);
+        ft_putchar('\n');
+        i++;
+    }
+}
+
+int main()
+{
+    // Chamando a função rush com os parâmetros desejados
+    rush(5, 3);
+
+    return 0;
+}
